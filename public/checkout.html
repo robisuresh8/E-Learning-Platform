@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout - ICTRD LEARNING</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 48px;
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        .checkout-form {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 32px;
+        }
+
+        .form-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-soft);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-bright);
+            box-shadow: 0 0 0 3px rgba(250, 129, 18, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .order-summary {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 32px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .order-summary h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .summary-item:last-of-type {
+            border-bottom: 2px solid var(--primary-bright);
+            margin-bottom: 24px;
+        }
+
+        .summary-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .summary-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .total-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+            border-radius: 8px;
+        }
+
+        .total-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .total-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-bright);
+        }
+
+        .security-badges {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-bright);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 24px;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-medium);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(250, 129, 18, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            height: 18px;
+            width: 18px;
+        }
+
+        .checkout-header {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            padding: 40px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--primary-bright);
+            text-align: center;
+        }
+
+        .checkout-header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .error-message {
+            display: none;
+            background: rgba(244, 67, 54, 0.1);
+            border: 2px solid #f44336;
+            color: #f44336;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="bi bi-rocket-takeoff" style="font-size: 28px; color: #fa8112;"></i>
+                <h1>ICTRD LEARNING</h1>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/courses" class="nav-link">Certifications</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="checkout-header">
+        <h1>⚡ Secure Certification Checkout</h1>
+        <p>Complete your purchase to get certified in under 10 minutes</p>
+    </div>
+
+    <main>
+        <div class="checkout-container">
+            <div class="checkout-form">
+                <div id="successMessage" class="success-message">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span id="successText">Payment successful! Redirecting...</span>
+                </div>
+
+                <div id="errorMessage" class="error-message">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <span id="errorText">An error occurred. Please try again.</span>
+                </div>
+
+                <form id="checkoutForm" onsubmit="processPayment(event)">
+                    <!-- Email Section -->
+                    <div class="form-section">
+                        <h3>Email Address</h3>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Section -->
+                    <div class="form-section">
+                        <h3>Payment Method</h3>
+                        <div class="form-group">
+                            <label for="paymentMethod">Select Payment Method</label>
+                            <select id="paymentMethod" name="paymentMethod" required>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="stripe">Stripe</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Credit Card Section (initially shown) -->
+                    <div id="creditCardSection" class="form-section">
+                        <h3>Card Details</h3>
+                        <div class="form-group">
+                            <label for="cardName">Cardholder Name</label>
+                            <input type="text" id="cardName" name="cardName" placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Address -->
+                    <div class="form-section">
+                        <h3>Billing Address</h3>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" placeholder="123 Main Street">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" placeholder="New York">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country" placeholder="United States">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms Agreement -->
+                    <div class="form-section">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="/terms" style="color: var(--primary-bright);">Terms of Service</a> and <a href="/privacy" style="color: var(--primary-bright);">Privacy Policy</a></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="bi bi-lock-fill"></i>
+                        <span>Complete Payment & Get Certified</span>
+                    </button>
+                </form>
+
+                <div id="loadingDiv" class="loading">
+                    <i class="bi bi-hourglass-split" style="font-size: 32px; margin-bottom: 16px;"></i>
+                    <p>Processing your certification payment...</p>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Certification</span>
+                    <span class="summary-value" id="summaryTitle">Professional Cert</span>
+                </div>
+
+                <div class="summary-item">
+                    <span class="summary-label">Duration</span>
+                    <span class="summary-value">Under 10 min</span>
+                </div>
+
+                <div class="summary-item">
+                    <span class="summary-label">Includes</span>
+                    <span class="summary-value">
+                        <ul style="margin: 0; padding-left: 16px; font-size: 12px;">
+                            <li>✓ Assessment</li>
+                            <li>✓ Certificate</li>
+                            <li>✓ Verification</li>
+                            <li>✓ Retakes</li>
+                        </ul>
+                    </span>
+                </div>
+
+                <div class="total-price">
+                    <span class="total-label">Price</span>
+                    <span class="total-amount">₹<span id="summaryPrice">2,499</span></span>
+                </div>
+
+                <div class="security-badges">
+                    <div class="security-badge">
+                        <i class="bi bi-shield-check" style="color: var(--primary-bright);"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                    <div class="security-badge">
+                        <i class="bi bi-check-circle" style="color: var(--primary-bright);"></i>
+                        <span>SSL Encrypted</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 ICTRD LEARNING. Secure checkout powered by industry-standard payment processors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/checkout.js"></script>
+</body>
+</html>

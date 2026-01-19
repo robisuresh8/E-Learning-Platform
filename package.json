@@ -1,0 +1,16 @@
+{
+  "name": "calm-elearning-platform",
+  "version": "1.0.0",
+  "description": "A calm and soothing e-learning platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["elearning", "education", "courses"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

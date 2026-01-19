@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification - ICTRD LEARNING</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="bi bi-rocket-takeoff" style="font-size: 28px; color: #fa8112;"></i>
+                <h1>ICTRD LEARNING</h1>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/courses" class="nav-link active">Certifications</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/login" class="btn-primary btn-small">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="course-hero">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="/courses">All Certifications</a>
+                    <span class="breadcrumb-divider">/</span>
+                    <span id="courseTitle">Certification</span>
+                </div>
+                
+                <div class="course-hero-content">
+                    <div class="course-left">
+                        <div class="cert-badge-large">
+                            <i class="bi bi-lightning-charge-fill" style="font-size: 24px; color: #fa8112;"></i>
+                            <span>UNDER 10 MINUTES</span>
+                        </div>
+                        <h1 id="courseHeading">Professional Certification</h1>
+                        <p id="courseDescription">Get industry-recognized certification in under 10 minutes.</p>
+                        
+                        <div class="course-meta">
+                            <div class="meta-item">
+                                <i class="bi bi-hourglass-end" style="color: #fa8112;"></i>
+                                <div>
+                                    <div class="meta-label">Completion Time</div>
+                                    <div class="meta-value">Under 10 Minutes</div>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-bar-chart-line-fill" style="color: #fa8112;"></i>
+                                <div>
+                                    <div class="meta-label">Level</div>
+                                    <div class="meta-value" id="courseLevel">Intermediate</div>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-patch-check-fill" style="color: #fa8112;"></i>
+                                <div>
+                                    <div class="meta-label">Certificate</div>
+                                    <div class="meta-value">Instantly Verified</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="course-price-section">
+                            <div class="price-display">
+                                <span class="currency">₹</span>
+                                <span class="amount" id="coursePrice">2,499</span>
+                            </div>
+                            <button class="btn-primary btn-large" onclick="initiateCertification()">
+                                <i class="bi bi-lightning-fill"></i>
+                                <span>Get Certified Now</span>
+                            </button>
+                            <p class="payment-info">Secure payment • Instant certificate upon completion</p>
+                        </div>
+                    </div>
+
+                    <div class="course-right">
+                        <div class="course-visual">
+                            <div class="cert-preview-large">
+                                <div class="cert-card-large">
+                                    <div class="cert-header-large">
+                                        <div class="cert-logo-large">ICTRD</div>
+                                        <div class="cert-badge-verified">✓ Verified</div>
+                                    </div>
+                                    <div class="cert-body-large">
+                                        <div class="cert-title-large">Certificate of Completion</div>
+                                        <div class="cert-name-large">Your Name Here</div>
+                                        <div class="cert-course-large" id="certCourse">Professional Certification</div>
+                                        <div class="cert-date-large">
+                                            <span>Issued:</span>
+                                            <span id="certDate"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cert-footer-large">
+                                        <div class="cert-id-large">ID: ICTRD-2024-XXXXX</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="certification-timeline">
+            <div class="container">
+                <h2>Your Certification Timeline</h2>
+                <div class="timeline-steps">
+                    <div class="timeline-step">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h3>Make Payment (1 min)</h3>
+                            <p>Secure payment processing. Get instant access to your certification assessment.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-connector"></div>
+                    <div class="timeline-step">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h3>Complete Assessment (5-7 min)</h3>
+                            <p>Take the focused certification exam. Questions are direct and relevant to your field.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-connector"></div>
+                    <div class="timeline-step">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h3>Receive Certificate (1 min)</h3>
+                            <p>Instantly download your verified certificate with unique authentication code. Share immediately!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="course-details">
+            <div class="container">
+                <div class="details-grid">
+                    <div class="details-main">
+                        <h2>About This Certification</h2>
+                        <p id="courseFullDescription">This fast-track certification program is designed to validate your expertise in this field. Through a focused assessment, you'll demonstrate your knowledge to potential employers worldwide.</p>
+
+                        <h3>What's Included</h3>
+                        <ul class="course-list" id="courseInclusions">
+                            <li><i class="bi bi-check-circle-fill"></i> <span>Comprehensive certification assessment</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i> <span>Instant digital certificate download</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i> <span>Unique verification code for employers</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i> <span>Unlimited retake attempts</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i> <span>Lifetime certificate access</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i> <span>LinkedIn shareable credential</span></li>
+                        </ul>
+
+                        <h3>Why Get This Certification</h3>
+                        <ul class="benefits-list">
+                            <li><i class="bi bi-arrow-right-circle-fill"></i> <span>Industry-recognized credential</span></li>
+                            <li><i class="bi bi-arrow-right-circle-fill"></i> <span>Enhance your resume immediately</span></li>
+                            <li><i class="bi bi-arrow-right-circle-fill"></i> <span>Boost career opportunities</span></li>
+                            <li><i class="bi bi-arrow-right-circle-fill"></i> <span>Verified by employers worldwide</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="details-sidebar">
+                        <div class="info-card">
+                            <h3>Certification Highlights</h3>
+                            <div class="highlight-item">
+                                <strong>⚡ Time Required</strong>
+                                <p>Under 10 minutes total</p>
+                            </div>
+                            <div class="highlight-item">
+                                <strong>📋 Assessment Format</strong>
+                                <p>Multiple choice & practical questions</p>
+                            </div>
+                            <div class="highlight-item">
+                                <strong>✓ Pass Rate</strong>
+                                <p>95% of participants pass</p>
+                            </div>
+                            <div class="highlight-item">
+                                <strong>💾 Certificate Type</strong>
+                                <p>Digital + Downloadable PDF</p>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary btn-large" style="width: 100%; margin-top: 24px;" onclick="initiateCertification()">
+                            <i class="bi bi-lightning-fill"></i>
+                            <span>Get Certified Now</span>
+                        </button>
+                        <p style="text-align: center; margin-top: 16px; font-size: 14px; color: var(--text-secondary);">
+                            Secure payment • Instant access • 30-day money-back guarantee
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <div class="container">
+                <h2>Certified Professionals</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Got certified in 8 minutes. Immediately added to LinkedIn. Got 3 interview requests within a week!"</p>
+                        <div class="testimonial-author">
+                            <strong>Alex Johnson</strong>
+                            <span>Senior Developer</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"The fastest certification I've ever gotten. Quality content, and employers recognize it. Highly recommend!"</p>
+                        <div class="testimonial-author">
+                            <strong>Maria Chen</strong>
+                            <span>Marketing Manager</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Worth every penny. Fast, professional, and the certificate actually matters in my field."</p>
+                        <div class="testimonial-author">
+                            <strong>David Smith</strong>
+                            <span>Project Manager</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="bi bi-rocket-takeoff" style="font-size: 28px; color: #fa8112;"></i>
+                        <h3>ICTRD LEARNING</h3>
+                    </div>
+                    <p>Fast-track certifications that employers trust. Get certified in under 10 minutes.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="/courses">Certifications</a>
+                    <a href="/about">About Us</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/login">Login</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="/faq">FAQ</a>
+                    <a href="/help">Help Center</a>
+                    <a href="/blog">Blog</a>
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank">Twitter</a>
+                    <a href="https://facebook.com" target="_blank">Facebook</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ICTRD LEARNING. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/course.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - ICTRD LEARNING</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <h1>ICTRD LEARNING</h1>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/courses" class="nav-link">Courses</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/login" class="btn-primary btn-small">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Our Blog</h1>
+                <p>Insights, tips, and updates to help you succeed in your learning journey</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="courses-grid" id="blogPosts">
+                    <article class="course-card fade-in blog-card">
+                        <div class="blog-image" style="height: 200px; background: linear-gradient(135deg, var(--primary-medium), var(--secondary-medium)); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 64px;">📚</div>
+                        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 12px;">March 15, 2024 • 5 min read</div>
+                        <h3>10 Essential Skills for Web Developers in 2024</h3>
+                        <p>Discover the most in-demand skills that every web developer should master this year, from modern JavaScript frameworks to cloud deployment strategies.</p>
+                        <a href="#" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Read More</a>
+                    </article>
+
+                    <article class="course-card fade-in blog-card">
+                        <div class="blog-image" style="height: 200px; background: linear-gradient(135deg, var(--accent-purple), var(--primary-medium)); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 64px;">💼</div>
+                        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 12px;">March 10, 2024 • 7 min read</div>
+                        <h3>How to Build a Career in Data Science</h3>
+                        <p>Learn the step-by-step path to becoming a data scientist, including the skills you need, certifications to pursue, and how to land your first job.</p>
+                        <a href="#" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Read More</a>
+                    </article>
+
+                    <article class="course-card fade-in blog-card">
+                        <div class="blog-image" style="height: 200px; background: linear-gradient(135deg, var(--secondary-medium), var(--accent-purple)); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 64px;">🎨</div>
+                        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 12px;">March 5, 2024 • 6 min read</div>
+                        <h3>UI/UX Design Trends for 2024</h3>
+                        <p>Explore the latest design trends shaping user interfaces this year, from dark mode to micro-interactions and accessibility-first design.</p>
+                        <a href="#" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Read More</a>
+                    </article>
+
+                    <article class="course-card fade-in blog-card">
+                        <div class="blog-image" style="height: 200px; background: linear-gradient(135deg, var(--primary-deep), var(--primary-medium)); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 64px;">☁️</div>
+                        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 12px;">February 28, 2024 • 8 min read</div>
+                        <h3>Getting Started with Cloud Computing</h3>
+                        <p>A comprehensive guide to cloud computing basics, covering AWS, Azure, and Google Cloud, plus tips for choosing the right platform for your needs.</p>
+                        <a href="#" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Read More</a>
+                    </article>
+
+                    <article class="course-card fade-in blog-card">
+                        <div class="blog-image" style="height: 200px; background: linear-gradient(135deg, var(--secondary-bright), var(--primary-bright)); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 64px;">🚀</div>
+                        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 12px;">February 20, 2024 • 6 min read</div>
+                        <h3>5 Ways to Stay Motivated While Learning Online</h3>
+                        <p>Discover proven strategies to maintain motivation and momentum throughout your online learning journey, from setting goals to building habits.</p>
+                        <a href="#" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Read More</a>
+                    </article>
+
+                    <article class="course-card fade-in blog-card">
+                        <div class="blog-image" style="height: 200px; background: linear-gradient(135deg, var(--accent-purple), var(--secondary-bright)); border-radius: 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 64px;">🔒</div>
+                        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 12px;">February 15, 2024 • 7 min read</div>
+                        <h3>Cybersecurity Best Practices for Developers</h3>
+                        <p>Learn essential security practices every developer should know, from secure coding principles to protecting user data and preventing common vulnerabilities.</p>
+                        <a href="#" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Read More</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <span class="logo-icon">🚀</span>
+                        <h3>ICTRD LEARNING</h3>
+                    </div>
+                    <p>Empowering learners worldwide with cutting-edge education and career advancement opportunities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="/courses">Courses</a>
+                    <a href="/about">About Us</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/login">Login</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="/faq">FAQ</a>
+                    <a href="/help">Help Center</a>
+                    <a href="/blog">Blog</a>
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank">Twitter</a>
+                    <a href="https://facebook.com" target="_blank">Facebook</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ICTRD LEARNING. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/blog.js"></script>
+</body>
+</html>
