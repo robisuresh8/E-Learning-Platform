@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ICTRD LEARNING - Fast-Track Certification Platform
 
 ## Overview
@@ -326,3 +327,6 @@ Each course includes detailed curriculum, instructor information, and comprehens
 ---
 
 Transform your future with ICTRD LEARNING! 🚀✨
+=======
+# E-Learning-Platform
+>>>>>>> 6ea8bce4c6f71154500aa55510cb70bbc28905d9
