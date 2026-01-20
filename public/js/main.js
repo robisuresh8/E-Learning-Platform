@@ -1,5 +1,8 @@
 // Set current date in certificate preview
 document.addEventListener('DOMContentLoaded', () => {
+    // Setup user session and navigation
+    setupUserSession();
+    
     const currentDateEl = document.getElementById('current-date');
     if (currentDateEl) {
         const today = new Date();
@@ -28,6 +31,101 @@ document.addEventListener('DOMContentLoaded', () => {
     setupHeroLottie();
     setupIntersectionObserver();
 });
+
+// Setup user session and update navigation
+function setupUserSession() {
+    const token = localStorage.getItem('sessionToken');
+    const userName = localStorage.getItem('userName');
+    const userIndicator = document.getElementById('userIndicator');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (token && userIndicator) {
+        // User is logged in - show user menu with prominent dashboard button
+        userIndicator.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <span style="color: var(--accent); font-weight: 500; display: flex; align-items: center; gap: 8px;">
+                    <span>👤</span>
+                    <span>${userName}</span>
+                </span>
+                <a href="/dashboard" style="
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    text-decoration: none;
+                    font-weight: 600;
+                    padding: 10px 18px;
+                    border-radius: 8px;
+                    transition: all 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 14px;
+                " 
+                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(102, 126, 234, 0.3)'"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <span>📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" onclick="logoutUser(event)" style="
+                    color: #ff6b6b;
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: color 0.3s;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                " onmouseover="this.style.color='#ff5252'" onmouseout="this.style.color='#ff6b6b'">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        `;
+    } else if (!token && userIndicator) {
+        // User not logged in - show login/signup
+        userIndicator.innerHTML = `
+            <div style="display: flex; gap: 10px;">
+                <a href="/login" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">Login</a>
+            </div>
+        `;
+    }
+}
+
+// Logout user
+function logoutUser(event) {
+    event.preventDefault();
+    
+    const token = localStorage.getItem('sessionToken');
+    
+    // Call logout API
+    fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Clear local storage
+        localStorage.removeItem('sessionToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('rememberMe');
+        
+        // Redirect to login
+        window.location.href = '/login';
+    })
+    .catch(error => {
+        console.error('Logout error:', error);
+        // Still clear local storage and redirect
+        localStorage.removeItem('sessionToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('rememberMe');
+        window.location.href = '/login';
+    });
+}
+
 
 // Load external assets (Bootstrap Icons & Lottie)
 function loadExternalAssets() {

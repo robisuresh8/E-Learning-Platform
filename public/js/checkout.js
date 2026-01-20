@@ -3,7 +3,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadCheckoutData();
     setupPaymentMethodToggle();
+    setupUserInfo();
 });
+
+// Setup user information display
+function setupUserInfo() {
+    const token = localStorage.getItem('sessionToken');
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+    const userInfoDiv = document.getElementById('userInfo');
+    
+    if (token && userInfoDiv) {
+        userInfoDiv.innerHTML = `<p style="color: var(--accent); margin-bottom: 15px;">👤 Logged in as: <strong>${userName}</strong> (${userEmail})</p>`;
+    }
+}
 
 // Load certification data from URL parameters
 function loadCheckoutData() {
@@ -11,6 +24,7 @@ function loadCheckoutData() {
     const title = urlParams.get('title') || 'Professional Certification';
     const price = urlParams.get('price') || '99';
     const courseId = urlParams.get('courseId');
+    const userId = urlParams.get('userId');
 
     // Update summary
     document.getElementById('summaryTitle').textContent = title;
@@ -20,7 +34,8 @@ function loadCheckoutData() {
     sessionStorage.setItem('currentCheckout', JSON.stringify({
         courseId: courseId,
         title: title,
-        price: parseFloat(price)
+        price: parseFloat(price),
+        userId: userId
     }));
 }
 
@@ -45,6 +60,13 @@ function processPayment(event) {
     const form = document.getElementById('checkoutForm');
     const email = document.getElementById('email').value;
     const paymentMethod = document.getElementById('paymentMethod').value;
+    const token = localStorage.getItem('sessionToken');
+
+    if (!token) {
+        alert('Please login to complete the purchase');
+        window.location.href = '/login';
+        return;
+    }
 
     // Show loading state
     document.getElementById('loadingDiv').style.display = 'block';
@@ -52,13 +74,14 @@ function processPayment(event) {
 
     const checkout = JSON.parse(sessionStorage.getItem('currentCheckout'));
 
-    // Create payment payload
+    // Create payment payload with user info
     const paymentData = {
         courseId: checkout.courseId,
         amount: checkout.price,
         email: email,
         paymentMethod: paymentMethod,
         courseTitle: checkout.title,
+        userId: checkout.userId,
         timestamp: new Date().toISOString()
     };
 
@@ -67,6 +90,7 @@ function processPayment(event) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(paymentData)
     })
@@ -78,7 +102,7 @@ function processPayment(event) {
             const successText = document.getElementById('successText');
             
             successText.innerHTML = `
-                ✓ Payment successful! Your certification has been issued.<br>
+                ✓ Payment successful! You are now enrolled in this course.<br>
                 Certificate ID: ${data.certificateId}<br>
                 Redirecting to your certificate...
             `;

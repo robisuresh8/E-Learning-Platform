@@ -3,7 +3,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     setupAuthToggle();
     setupFormHandlers();
+    checkExistingSession();
 });
+
+// Check if user already has an active session
+function checkExistingSession() {
+    const token = localStorage.getItem('sessionToken');
+    if (token) {
+        // User is already logged in
+        // Show option to go to dashboard or continue with login
+        // For now, don't redirect - let user choose
+        // window.location.href = '/';
+    }
+}
 
 // Toggle between login and signup forms
 function setupAuthToggle() {
@@ -54,16 +66,59 @@ function handleLogin(e) {
     const password = formData.get('password');
     const remember = formData.get('remember');
     
-    // Simulate login (in a real app, this would make an API call)
-    console.log('Login attempt:', { email, remember: !!remember });
+    if (!email || !password) {
+        showMessage('Please fill in all fields', 'error');
+        return;
+    }
     
-    // Show success message
-    showMessage('Welcome back! Redirecting...', 'success');
+    // Show loading state
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging in...';
     
-    // Simulate redirect after a delay
-    setTimeout(() => {
-        window.location.href = '/';
-    }, 1500);
+    // Make API call to login
+    fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Store session token and user info
+            localStorage.setItem('sessionToken', data.sessionToken);
+            localStorage.setItem('userId', data.userId);
+            localStorage.setItem('userName', data.user.name);
+            localStorage.setItem('userEmail', data.user.email);
+            
+            if (remember) {
+                localStorage.setItem('rememberMe', 'true');
+            }
+            
+            showMessage('Welcome back! Redirecting...', 'success');
+            
+            // Redirect to dashboard after a delay (or home if not available)
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 1500);
+        } else {
+            showMessage(data.error || 'Login failed', 'error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    })
+    .catch(error => {
+        console.error('Login error:', error);
+        showMessage('An error occurred. Please try again.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    });
 }
 
 // Handle signup form submission
@@ -76,21 +131,67 @@ function handleSignup(e) {
     const password = formData.get('password');
     const terms = formData.get('terms');
     
+    if (!name || !email || !password) {
+        showMessage('Please fill in all fields', 'error');
+        return;
+    }
+    
     if (!terms) {
         showMessage('Please agree to the Terms of Service and Privacy Policy', 'error');
         return;
     }
     
-    // Simulate signup (in a real app, this would make an API call)
-    console.log('Signup attempt:', { name, email });
+    // Validate email format
+    if (!email.includes('@')) {
+        showMessage('Please enter a valid email address', 'error');
+        return;
+    }
     
-    // Show success message
-    showMessage('Account created successfully! Redirecting...', 'success');
+    // Show loading state
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating Account...';
     
-    // Simulate redirect after a delay
-    setTimeout(() => {
-        window.location.href = '/';
-    }, 1500);
+    // Make API call to signup
+    fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Store session token and user info
+            localStorage.setItem('sessionToken', data.sessionToken);
+            localStorage.setItem('userId', data.userId);
+            localStorage.setItem('userName', data.user.name);
+            localStorage.setItem('userEmail', data.user.email);
+            
+            showMessage('Account created successfully! Redirecting...', 'success');
+            
+            // Redirect to dashboard after a delay
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 1500);
+        } else {
+            showMessage(data.error || 'Signup failed', 'error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    })
+    .catch(error => {
+        console.error('Signup error:', error);
+        showMessage('An error occurred. Please try again.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    });
 }
 
 // Show message to user

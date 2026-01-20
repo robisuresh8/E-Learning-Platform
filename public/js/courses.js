@@ -1,15 +1,28 @@
 // JavaScript for Courses Page
 
 document.addEventListener('DOMContentLoaded', () => {
+    checkUserAuthentication();
     loadCourses();
     setupFilters();
 });
+
+// Check if user is logged in
+function checkUserAuthentication() {
+    const token = localStorage.getItem('sessionToken');
+    const userName = localStorage.getItem('userName');
+    const userIndicator = document.getElementById('userIndicator');
+    
+    if (token && userIndicator) {
+        userIndicator.innerHTML = `<span style="color: var(--accent); margin-left: 10px;">👤 ${userName}</span>`;
+    }
+}
 
 // Load courses from API
 async function loadCourses() {
     try {
         const response = await fetch('/api/courses');
         const courses = await response.json();
+        await enrichCoursesWithEnrollmentStatus(courses);
         displayCourses(courses);
         window.allCourses = courses; // Store for filtering
     } catch (error) {
@@ -19,13 +32,42 @@ async function loadCourses() {
     }
 }
 
+// Add enrollment status to each course
+async function enrichCoursesWithEnrollmentStatus(courses) {
+    const token = localStorage.getItem('sessionToken');
+    
+    for (let course of courses) {
+        course.isEnrolled = false;
+        
+        if (token) {
+            try {
+                const response = await fetch(`/api/user/enrolled/${course.id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    course.isEnrolled = data.isEnrolled;
+                }
+            } catch (error) {
+                console.error(`Error checking enrollment for course ${course.id}:`, error);
+            }
+        }
+    }
+}
+
 // Display courses in the grid
 function displayCourses(courses) {
     const coursesGrid = document.getElementById('coursesGrid');
     
     if (!coursesGrid) return;
     
-    coursesGrid.innerHTML = courses.map(course => `
+    coursesGrid.innerHTML = courses.map(course => {
+        const enrollmentStatus = course.isEnrolled ? '<span style="color: #2d5a3d; font-weight: bold;">✓ Enrolled</span>' : '';
+        
+        return `
         <div class="course-card fade-in" data-level="${course.level.toLowerCase()}">
             <span class="course-icon">${course.image}</span>
             <h3>${course.title}</h3>
@@ -47,9 +89,11 @@ function displayCourses(courses) {
                     <span>${course.instructor}</span>
                 </div>
             </div>
+            ${enrollmentStatus ? `<div style="margin-top: 10px; padding: 8px; background: rgba(45, 90, 61, 0.1); border-radius: 6px; text-align: center;">${enrollmentStatus}</div>` : ''}
             <a href="/course/${course.id}" class="btn-primary">View Course</a>
         </div>
-    `).join('');
+    `;
+    }).join('');
     
     // Animate course cards on load
     animateCourseCards();

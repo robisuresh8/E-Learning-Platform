@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize Your Learning Experience - ICTRD LEARNING</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #222222 0%, #2d2d2d 50%, #383838 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .personalization-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid rgba(250, 129, 18, 0.2);
+        }
+
+        .personalization-header {
+            background: linear-gradient(135deg, #fa8112 0%, #e67300 100%);
+            color: #faf3e1;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .personalization-header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .personalization-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .personalization-content {
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .form-section h2 {
+            font-size: 1.5em;
+            color: #faf3e1;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section h2 i {
+            color: #fa8112;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border: 2px solid #454545;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .radio-item:hover, .checkbox-item:hover {
+            border-color: #fa8112;
+            background-color: rgba(250, 129, 18, 0.1);
+        }
+
+        .radio-item input, .checkbox-item input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .radio-item label, .checkbox-item label {
+            cursor: pointer;
+            font-size: 1.05em;
+            color: #f5e7c6;
+            margin: 0;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .slider-container input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 5px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radiusfa8112;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(250, 129, 18, 0.4);
+        }
+
+        .slider-container input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #fa8112;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(250, 129, 18, 0.4);
+        }
+
+        .slider-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #fa811200;
+            color: #667eea;
+            min-width: 50px;
+        }
+
+        .textarea-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #454545;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1em;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.02);
+            color: #f5e7c6;
+        }
+
+        .textarea-input:focus {
+            outline: none;
+            border-color: #fa8112;
+        }
+
+        .progress-bar {
+            width: 100%;454545;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fa8112 0%, #e67300
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+fa8112 0%, #e67300 100%);
+            color: #faf3e1;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(250, 129, 18, 0.4);
+        }
+
+        .btn-secondary {
+            background: #454545;
+            color: #f5e7c6;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #555555
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .error-message {
+            display: none;
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="personalization-container">
+        <div class="personalization-header">
+            <h1>Personalize Your Learning</h1>
+            <p>Help us understand your learning preferences and goals</p>
+        </div>
+
+        <div class="personalization-content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <i class="bi bi-check-circle"></i> Your preferences have been saved successfully!
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <form id="personalizationForm">
+                <!-- Learning Level -->
+                <div class="form-section">
+                    <h2><i class="bi bi-graph-up"></i> What's Your Learning Level?</h2>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="beginner" name="learningLevel" value="beginner" required>
+                            <label for="beginner">Beginner - I'm new to this field</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="intermediate" name="learningLevel" value="intermediate">
+                            <label for="intermediate">Intermediate - I have some experience</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="advanced" name="learningLevel" value="advanced">
+                            <label for="advanced">Advanced - I'm looking to specialize</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Goals -->
+                <div class="form-section">
+                    <h2><i class="bi bi-target"></i> What Are Your Learning Goals?</h2>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal1" name="goals" value="career-advancement">
+                            <label for="goal1">Career Advancement</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal2" name="goals" value="skill-development">
+                            <label for="goal2">Skill Development</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal3" name="goals" value="certification">
+                            <label for="goal3">Get Certified</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal4" name="goals" value="hobby">
+                            <label for="goal4">Personal Interest/Hobby</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="goal5" name="goals" value="business">
+                            <label for="goal5">Business/Entrepreneurship</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Pace -->
+                <div class="form-section">
+                    <h2><i class="bi bi-speedometer2"></i> Preferred Learning Pace</h2>
+                    <div class="slider-container">
+                        <span>Slow</span>
+                        <input type="range" id="learningPace" name="learningPace" min="1" max="5" value="3">
+                        <span class="slider-value" id="paceValue">Medium</span>
+                    </div>
+                </div>
+
+                <!-- Time Available -->
+                <div class="form-section">
+                    <h2><i class="bi bi-calendar3"></i> How Much Time Can You Dedicate Weekly?</h2>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="time1" name="timeAvailable" value="5-10" required>
+                            <label for="time1">5-10 hours per week</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="time2" name="timeAvailable" value="10-20">
+                            <label for="time2">10-20 hours per week</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="time3" name="timeAvailable" value="20-30">
+                            <label for="time3">20-30 hours per week</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="time4" name="timeAvailable" value="30+">
+                            <label for="time4">30+ hours per week</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferred Domains -->
+                <div class="form-section">
+                    <h2><i class="bi bi-suit-heart"></i> Preferred Learning Domains</h2>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="domain1" name="domains" value="technology">
+                            <label for="domain1">Technology & Programming</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="domain2" name="domains" value="business">
+                            <label for="domain2">Business & Management</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="domain3" name="domains" value="creative">
+                            <label for="domain3">Creative & Design</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="domain4" name="domains" value="marketing">
+                            <label for="domain4">Marketing & Social Media</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="domain5" name="domains" value="health">
+                            <label for="domain5">Health & Wellness</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="domain6" name="domains" value="other">
+                            <label for="domain6">Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Style -->
+                <div class="form-section">
+                    <h2><i class="bi bi-lightbulb"></i> Your Preferred Learning Style</h2>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="style1" name="learningStyle" value="visual" required>
+                            <label for="style1">Visual - Videos, diagrams, infographics</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="style2" name="learningStyle" value="auditory">
+                            <label for="style2">Auditory - Lectures, podcasts, discussions</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="style3" name="learningStyle" value="reading">
+                            <label for="style3">Reading/Writing - Articles, documents</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="style4" name="learningStyle" value="kinesthetic">
+                            <label for="style4">Kinesthetic - Hands-on projects, practice</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Notes -->
+                <div class="form-section">
+                    <h2><i class="bi bi-chat-dots"></i> Any Additional Notes?</h2>
+                    <textarea class="textarea-input" id="additionalNotes" name="additionalNotes" placeholder="Tell us anything else about your learning preferences..."></textarea>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save My Preferences</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/personalization.js"></script>
+</body>
+</html>

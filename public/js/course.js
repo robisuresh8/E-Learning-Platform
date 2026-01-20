@@ -2,11 +2,24 @@
 // Handles course loading, display, and payment initiation
 
 let courseData = null;
+let userEnrollmentStatus = false;
 
 document.addEventListener('DOMContentLoaded', () => {
+    checkUserSession();
     loadCourseData();
     setCurrentDate();
 });
+
+// Check if user is logged in
+function checkUserSession() {
+    const token = localStorage.getItem('sessionToken');
+    const userName = localStorage.getItem('userName');
+    const userIndicator = document.getElementById('userIndicator');
+    
+    if (token && userIndicator) {
+        userIndicator.innerHTML = `<span style="color: var(--accent); margin-left: 10px;">👤 ${userName}</span>`;
+    }
+}
 
 // Load course data from URL parameters
 function loadCourseData() {
@@ -23,12 +36,37 @@ function loadCourseData() {
         .then(response => response.json())
         .then(course => {
             courseData = course;
-            populateCourseContent();
+            
+            // Check enrollment status if user is logged in
+            const token = localStorage.getItem('sessionToken');
+            if (token) {
+                checkEnrollmentStatus(courseId, token);
+            } else {
+                populateCourseContent();
+            }
         })
         .catch(err => {
             console.error('Error loading course:', err);
             window.location.href = '/courses';
         });
+}
+
+// Check if user is enrolled in this course
+function checkEnrollmentStatus(courseId, token) {
+    fetch(`/api/user/enrolled/${courseId}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        userEnrollmentStatus = data.isEnrolled;
+        populateCourseContent();
+    })
+    .catch(err => {
+        console.error('Error checking enrollment:', err);
+        populateCourseContent();
+    });
 }
 
 // Populate page with course content
@@ -44,6 +82,9 @@ function populateCourseContent() {
     document.getElementById('coursePrice').textContent = courseData.price.replace('₹', '').replace('$', '');
     document.getElementById('certCourse').textContent = courseData.title;
     document.getElementById('courseFullDescription').textContent = courseData.description;
+    
+    // Update enrollment button based on status
+    updateEnrollmentButton();
 }
 
 // Set current date in certificate preview
@@ -57,10 +98,43 @@ function setCurrentDate() {
     document.getElementById('certDate').textContent = dateStr;
 }
 
+// Update enrollment button based on user status
+function updateEnrollmentButton() {
+    const enrollBtn = document.getElementById('enrollBtn');
+    const token = localStorage.getItem('sessionToken');
+    
+    if (!enrollBtn) return;
+    
+    if (!token) {
+        // User not logged in
+        enrollBtn.textContent = 'Login to Enroll';
+        enrollBtn.onclick = () => window.location.href = '/login';
+    } else if (userEnrollmentStatus) {
+        // User already enrolled
+        enrollBtn.textContent = '✓ Already Enrolled';
+        enrollBtn.style.background = '#2d5a3d';
+        enrollBtn.disabled = true;
+        enrollBtn.onclick = null;
+    } else {
+        // User logged in but not enrolled
+        enrollBtn.textContent = 'Enroll & Purchase';
+        enrollBtn.onclick = (e) => initiateCertification();
+    }
+}
+
 // Initiate payment and certification process
 function initiateCertification() {
     if (!courseData) {
         alert('Loading course information...');
+        return;
+    }
+    
+    const token = localStorage.getItem('sessionToken');
+    const userId = localStorage.getItem('userId');
+    
+    if (!token) {
+        alert('Please login first');
+        window.location.href = '/login';
         return;
     }
     
@@ -74,6 +148,7 @@ function initiateCertification() {
         price: priceNumeric,
         priceDisplay: courseData.price,
         level: courseData.level,
+        userId: userId,
         timestamp: new Date().toISOString()
     };
     
@@ -86,7 +161,7 @@ function initiateCertification() {
 
 // Redirect to payment processor
 function redirectToPayment(paymentData) {
-    const checkoutUrl = `/checkout?courseId=${paymentData.courseId}&title=${encodeURIComponent(paymentData.title)}&price=${paymentData.price}`;
+    const checkoutUrl = `/checkout?courseId=${paymentData.courseId}&title=${encodeURIComponent(paymentData.title)}&price=${paymentData.price}&userId=${paymentData.userId}`;
     window.location.href = checkoutUrl;
 }
                 </div>
