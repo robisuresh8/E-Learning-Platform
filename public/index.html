@@ -3,338 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICTRD LEARNING - Certified in Under 10 Minutes</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>ICTRD LEARNING - Fast-Track Professional Certifications</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <style>
-        /* Interactive & Attractive Enhancements */
-        
-        /* Animated Gradient Text */
-        .gradient-text {
-            background: linear-gradient(to right, #fa8112, #ff4d4d, #fa8112);
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: gradient 3s linear infinite;
-        }
-        
-        @keyframes gradient {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        /* Uiverse Styled Button */
-        .btn-uiverse {
-            position: relative;
-            padding: 16px 32px;
-            background: #fa8112;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 50px;
-            border: none;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            z-index: 1;
-            box-shadow: 0 10px 20px rgba(250, 129, 18, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .btn-uiverse::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: #e67300;
-            transition: all 0.3s ease;
-            z-index: -1;
-            border-radius: 50px;
-        }
-        
-        .btn-uiverse:hover::before {
-            width: 100%;
-        }
-        
-        .btn-uiverse:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(250, 129, 18, 0.4);
-        }
-
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .glass-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(250, 129, 18, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-        
-        .glass-card:hover::after {
-            opacity: 1;
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            transition: color 0.3s ease;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .scroll-indicator:hover {
-            color: #fa8112;
-        }
-        
-        .mouse-icon {
-            width: 26px;
-            height: 40px;
-            border: 2px solid currentColor;
-            border-radius: 20px;
-            position: relative;
-        }
-        
-        .wheel {
-            width: 4px;
-            height: 8px;
-            background: currentColor;
-            border-radius: 2px;
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: scroll 1.5s infinite;
-        }
-        
-        @keyframes scroll {
-            0% { transform: translateX(-50%) translateY(0); opacity: 1; }
-            100% { transform: translateX(-50%) translateY(15px); opacity: 0; }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        /* Floating Background Shapes */
-        .hero-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-        
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float-shape 20s infinite linear;
-        }
-        
-        .shape-1 {
-            top: -10%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: #fa8112;
-            animation-delay: 0s;
-        }
-        
-        .shape-2 {
-            bottom: -10%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: #2d2d2d; /* Darker accent */
-            animation-delay: -10s;
-        }
-        
-        @keyframes float-shape {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(50px, 50px) rotate(120deg); }
-            66% { transform: translate(-50px, 100px) rotate(240deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header class="header">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
-            <div class="logo">
-                <i class="bi bi-rocket-takeoff" style="font-size: 28px; color: #fa8112;"></i>
-                <h1>ICTRD LEARNING</h1>
-            </div>
-            <nav class="nav">
-                <a href="/" class="nav-link active nav-item-animated">Home</a>
-                <a href="/courses" class="nav-link nav-item-animated">Courses</a>
-                <a href="/personalization" class="nav-link nav-item-animated">Personalize</a>
-                <a href="/about" class="nav-link nav-item-animated">About</a>
-                <a href="/contact" class="nav-link nav-item-animated">Contact</a>
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-rocket"></i>
+                ICTRD LEARNING
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/courses">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="ms-3" id="authButtons">
+                    <a href="/login" class="btn btn-primary me-2">Login</a>
+                    <a href="/login" class="btn btn-primary">Sign Up</a>
+                </div>
                 <div id="userIndicator">
-                    <a href="/login" class="nav-link nav-item-animated">Login</a>
-                    <a href="/login" class="btn-primary btn-small btn-glow">Sign Up</a>
+                    <div class="user-info">
+                        <i class="fas fa-user-circle" style="font-size: 1.5rem;"></i>
+                        <span id="userName" style="font-weight: 600;"></span>
+                    </div>
+                    <button class="btn btn-primary" id="logoutBtn">Logout</button>
                 </div>
-            </nav>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <!-- Hero Section - Enhanced & Modern -->
-        <section class="hero hero-new">
-            <div class="hero-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-            </div>
-            <div class="animated-bg"></div>
-            
-            <div class="container">
-                <div class="hero-content">
-                    <!-- Left Content -->
-                    <div class="hero-left-content">
-                        <!-- Animated Badge -->
-                        <div class="floating-badge">
-                            <span class="badge-dot"></span>
-                            <span>✨ Join 50K+ Certified Professionals</span>
-                        </div>
-                        
-                        <!-- Main Heading with Staggered Animation -->
-                        <h1 class="hero-title-new">
-                            <span class="word word-1">Get</span>
-                            <span class="word word-2">Certified</span>
-                            <span class="word highlight word-3 gradient-text">in 10 Minutes</span>
-                        </h1>
-                        
-                        <!-- Subtitle -->
-                        <p class="hero-subtitle-new">
-                            Industry-recognized certifications delivered instantly. No lengthy courses, no fluff—just pure career advancement.
-                        </p>
-                        
-                        <!-- CTA Buttons -->
-                        <div class="hero-buttons-new">
-                            <a href="/courses" class="btn-uiverse btn-large">
-                                <i class="bi bi-lightning-fill"></i>
-                                Explore Now
-                            </a>
-                            <a href="#courses" class="btn-secondary btn-large">
-                                <i class="bi bi-play-circle-fill"></i>
-                                See Courses
-                            </a>
-                        </div>
-                        
-                        <!-- Quick Stats -->
-                        <div class="hero-stats-row">
-                            <div class="stat-item-mini">
-                                <div class="stat-icon">⚡</div>
-                                <div>
-                                    <div class="stat-number">10</div>
-                                    <div class="stat-label">Min Complete</div>
-                                </div>
-                            </div>
-                            <div class="stat-item-mini">
-                                <div class="stat-icon">👥</div>
-                                <div>
-                                    <div class="stat-number">50K+</div>
-                                    <div class="stat-label">Certified</div>
-                                </div>
-                            </div>
-                            <div class="stat-item-mini">
-                                <div class="stat-icon">🎯</div>
-                                <div>
-                                    <div class="stat-number">50+</div>
-                                    <div class="stat-label">Courses</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Visual Section -->
-                    <div class="hero-right-visual">
-                        <div class="hero-visual-box">
-                            <div class="visual-icon">⚡</div>
-                            <div class="visual-text">Get Certified<br>in Minutes</div>
-                        </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1>Get Certified in Under 10 Minutes</h1>
+                    <p>Fast-track your professional development with instant certifications recognized globally. No lengthy courses, no fluff—just focused, practical credentials.</p>
+                    <div>
+                        <a href="/courses" class="btn-hero">
+                            <i class="fas fa-graduation-cap"></i>
+                            Explore Courses
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Scroll Indicator -->
-                <a href="#courses" class="scroll-indicator">
-                    <div class="mouse-icon">
-                        <div class="wheel"></div>
-                    </div>
-                    <span>Scroll</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Process Section -->
-        <section class="quick-process">
-            <div class="container">
-                <h2 class="section-title-center">Your Path to Success</h2>
-                <div class="process-steps">
-                    <div class="process-step">
-                        <div class="step-circle">1</div>
-                        <h3>Select</h3>
-                        <p>Choose your certification</p>
-                    </div>
-                    <div class="process-arrow">
-                        <i class="bi bi-arrow-right"></i>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-circle">2</div>
-                        <h3>Assess</h3>
-                        <p>Complete focused exam</p>
-                    </div>
-                    <div class="process-arrow">
-                        <i class="bi bi-arrow-right"></i>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-circle">3</div>
-                        <h3>Celebrate</h3>
-                        <p>Download certificate</p>
+                <div class="col-lg-6 text-center">
+                    <div class="hero-image">
+                        <i class="fas fa-book-open"></i>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+
+
+   
+    <!-- Courses Section -->
+    <section class="courses-section">
+        <div class="container">
+            <h2 class="section-title">Featured Certifications</h2>
+            <p class="section-subtitle">Choose from our most popular professional certification programs</p>
+            <div class="row g-4" id="coursesList">
+                <!-- Courses will be loaded here via JavaScript -->
+            </div>
+            <div class="text-center mt-5">
+                <a href="/courses" class="btn-hero">View All Certifications</a>
+            </div>
+        </div>
+    </section>
+       
 
         <!-- Tools & Resources Section -->
         <section class="tools-resources-section">
@@ -343,141 +100,56 @@
                     <h2 class="section-title">Personalize Your Learning Journey</h2>
                     <p class="section-subtitle">Powerful tools to help you succeed and grow</p>
                 </div>
-                <div class="tools-grid">
+                <div class="tools-grid-alternate">
                     <!-- Personalization Tool -->
-                    <div class="tool-card glass-card">
-                        <div class="tool-icon-wrapper">
-                            <i class="bi bi-person-heart"></i>
-                        </div>
-                        <h3>Learning Preferences</h3>
-                        <p>Personalize your learning experience based on your goals, pace, and learning style</p>
+                    <div class="tool-card-neumorphic tool-left">
+                        <div class="tool-bg"></div>
+                        <div class="tool-icon-display"><i class="fas fa-sliders-h"></i></div>
+                        <h3 class="tool-title">Learning Preferences</h3>
+                        <p class="tool-description">Personalize your learning experience based on your goals, pace, and learning style</p>
                         <ul class="tool-features">
-                            <li><i class="bi bi-check-circle-fill"></i> Identify your learning level</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Set your goals</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Choose your pace</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Select preferred domains</li>
+                            <li><i class="fas fa-check-circle"></i> Identify your learning level</li>
+                            <li><i class="fas fa-check-circle"></i> Set your goals</li>
+                            <li><i class="fas fa-check-circle"></i> Choose your pace</li>
+                            <li><i class="fas fa-check-circle"></i> Select preferred domains</li>
                         </ul>
-                        <a href="/personalization" class="tool-btn">
-                            <i class="bi bi-arrow-right"></i> Get Started
+                        <a href="/personalization" class="tool-btn-modern">
+                            Get Started <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
 
                     <!-- Certificate Customizer -->
-                    <div class="tool-card glass-card">
-                        <div class="tool-icon-wrapper">
-                            <i class="bi bi-award"></i>
-                        </div>
-                        <h3>Certificate Designer</h3>
-                        <p>Create a professional, customized certificate that reflects your achievements</p>
+                    <div class="tool-card-neumorphic tool-right">
+                        <div class="tool-bg"></div>
+                        <div class="tool-icon-display"><i class="fas fa-certificate"></i></div>
+                        <h3 class="tool-title">Certificate Designer</h3>
+                        <p class="tool-description">Create a professional, customized certificate that reflects your achievements</p>
                         <ul class="tool-features">
-                            <li><i class="bi bi-check-circle-fill"></i> Custom styling options</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Professional templates</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Real-time preview</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Print & download</li>
+                            <li><i class="fas fa-check-circle"></i> Custom styling options</li>
+                            <li><i class="fas fa-check-circle"></i> Professional templates</li>
+                            <li><i class="fas fa-check-circle"></i> Real-time preview</li>
+                            <li><i class="fas fa-check-circle"></i> Print & download</li>
                         </ul>
-                        <a href="/customize-certification" class="tool-btn">
-                            <i class="bi bi-arrow-right"></i> Design Now
+                        <a href="/customize-certification" class="tool-btn-modern">
+                            Design Now <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
 
                     <!-- Resume Builder -->
-                    <div class="tool-card glass-card">
-                        <div class="tool-icon-wrapper">
-                            <i class="bi bi-file-text"></i>
-                        </div>
-                        <h3>Resume Builder</h3>
-                        <p>Build a professional resume to showcase your skills and experience</p>
+                    <div class="tool-card-neumorphic tool-left">
+                        <div class="tool-bg"></div>
+                        <div class="tool-icon-display"><i class="fas fa-file-alt"></i></div>
+                        <h3 class="tool-title">Resume Builder</h3>
+                        <p class="tool-description">Build a professional resume to showcase your skills and experience</p>
                         <ul class="tool-features">
-                            <li><i class="bi bi-check-circle-fill"></i> Easy-to-use editor</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Professional formats</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Live preview</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Export to PDF</li>
+                            <li><i class="fas fa-check-circle"></i> Easy-to-use editor</li>
+                            <li><i class="fas fa-check-circle"></i> Professional formats</li>
+                            <li><i class="fas fa-check-circle"></i> Live preview</li>
+                            <li><i class="fas fa-check-circle"></i> Export to PDF</li>
                         </ul>
-                        <a href="/resume-builder" class="tool-btn">
-                            <i class="bi bi-arrow-right"></i> Build Resume
+                        <a href="/resume-builder" class="tool-btn-modern">
+                            Build Resume <i class="fas fa-arrow-right"></i>
                         </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Courses Section -->
-        <section id="courses" class="courses-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Professional Certifications</h2>
-                    <p class="section-subtitle">Choose from 50+ industry-recognized certifications</p>
-                </div>
-                <div class="courses-grid" id="coursesGrid">
-                    <!-- Courses will be loaded here via JavaScript -->
-                </div>
-                <div style="text-align: center; margin-top: 60px;">
-                    <a href="/courses" class="btn-primary btn-large">View All Certifications</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Why ICTRD Learning?</h2>
-                    <p class="section-subtitle">What makes our certifications different</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card feature-card-1 glass-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Lightning Fast</h3>
-                        <p>Complete certification in under 10 minutes without compromising quality</p>
-                    </div>
-                    <div class="feature-card feature-card-2 glass-card">
-                        <div class="feature-icon">🌍</div>
-                        <h3>Globally Recognized</h3>
-                        <p>Trusted by employers worldwide. Enhance your resume instantly</p>
-                    </div>
-                    <div class="feature-card feature-card-3 glass-card">
-                        <div class="feature-icon">✓</div>
-                        <h3>Industry Standard</h3>
-                        <p>All certifications meet professional industry standards</p>
-                    </div>
-                    <div class="feature-card feature-card-4 glass-card">
-                        <div class="feature-icon">♾️</div>
-                        <h3>Unlimited Retakes</h3>
-                        <p>Retake exams as many times as needed at no additional cost</p>
-                    </div>
-                    <div class="feature-card feature-card-5 glass-card">
-                        <div class="feature-icon">🔐</div>
-                        <h3>Verified Credentials</h3>
-                        <p>Every certificate includes unique verification code</p>
-                    </div>
-                    <div class="feature-card feature-card-6 glass-card">
-                        <div class="feature-icon">📱</div>
-                        <h3>Instant Delivery</h3>
-                        <p>Download and share on LinkedIn immediately</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="stats-section">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-card stat-card-1">
-                        <div class="stat-card-number">50K+</div>
-                        <div class="stat-card-label">Certified Professionals</div>
-                    </div>
-                    <div class="stat-card stat-card-2">
-                        <div class="stat-card-number">10</div>
-                        <div class="stat-card-label">Min Average</div>
-                    </div>
-                    <div class="stat-card stat-card-3">
-                        <div class="stat-card-number">50+</div>
-                        <div class="stat-card-label">Certifications</div>
-                    </div>
-                    <div class="stat-card stat-card-4">
-                        <div class="stat-card-number">95%</div>
-                        <div class="stat-card-label">Pass Rate</div>
                     </div>
                 </div>
             </div>
