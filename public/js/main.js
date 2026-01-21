@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadCourses();
     smoothScroll();
     initScrollAnimations();
+    initializeCertificateDate();
 });
 
 // ==============================
@@ -188,4 +189,18 @@ function smoothScroll() {
             }
         });
     });
+}
+
+// ==============================
+// CERTIFICATE DATE INITIALIZATION
+// ==============================
+
+function initializeCertificateDate() {
+    const certDateElement = document.getElementById('certDate');
+    if (certDateElement) {
+        const today = new Date();
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        const formattedDate = today.toLocaleDateString('en-US', options);
+        certDateElement.textContent = formattedDate;
+    }
 }
