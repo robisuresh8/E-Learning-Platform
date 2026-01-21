@@ -498,40 +498,83 @@ body {
 }
 
 /* Card Container */
-.course-card-hover {
+.course-card {
     width: 100%;
     height: 320px;
-    position: relative;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    background: rgb(45, 45, 45);
+    transition: all 0.4s;
     border-radius: 15px;
-    overflow: hidden;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+    font-size: 30px;
+    font-weight: 900;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 30px rgba(201, 181, 156, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.course-card-hover:hover {
-    transform: scale(1.05);
-    box-shadow: 0 20px 50px rgba(201, 181, 156, 0.25);
+.course-card:hover {
+    border-radius: 15px;
+    transform: scale(1.2);
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+    background: rgb(0, 0, 0);
 }
 
-.course-front-content {
-    position: absolute;
-    inset: 0;
+.first-content {
+    height: 100%;
+    width: 100%;
+    transition: all 0.4s;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    opacity: 1;
+    border-radius: 15px;
     color: white;
     text-align: center;
     padding: 2rem;
     z-index: 2;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.course-card:hover .first-content {
+    height: 0px;
+    opacity: 0;
+}
+
+.second-content {
+    height: 0%;
+    width: 100%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transition: all 0.4s;
+    font-size: 0px;
+    transform: rotate(90deg) scale(-1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.course-card:hover .second-content {
     opacity: 1;
-    visibility: visible;
+    height: 100%;
+    font-size: 1rem;
+    transform: rotate(0deg);
+}
+
+.course-back-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
 }
 
 .course-icon-display {
@@ -540,6 +583,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
 }
 
 .course-card-title {
@@ -547,39 +591,13 @@ body {
     font-weight: 700;
     margin: 0;
     line-height: 1.4;
-}
-
-.course-overlay-content {
-    position: absolute;
-    inset: 0;
-    background: white;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    z-index: 1;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    gap: 1rem;
-}
-
-.course-card-hover:hover .course-front-content {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.course-card-hover:hover .course-overlay-content {
-    opacity: 1;
-    visibility: visible;
+    color: white;
 }
 
 .course-badge {
     display: inline-block;
     background: rgba(201, 181, 156, 0.15);
-    color: var(--primary-color);
+    color: #c9b59c;
     padding: 0.4rem 1rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -587,7 +605,7 @@ body {
 }
 
 .course-back-description {
-    color: var(--text-light);
+    color: #aaa;
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
@@ -599,7 +617,7 @@ body {
     justify-content: center;
     gap: 1.5rem;
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: #aaa;
 }
 
 .course-back-meta span {
@@ -609,7 +627,7 @@ body {
 }
 
 .course-back-meta i {
-    color: var(--primary-color);
+    color: #fa8112;
     font-weight: 600;
 }
 
@@ -767,6 +785,51 @@ body {
     margin: 0 auto;
 }
 
+.tool-card {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    background: #07182E;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow: hidden;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.tool-card::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+    height: 130%;
+    animation: rotBGimg 3s linear infinite;
+    transition: all 0.2s linear;
+    z-index: -2;
+}
+
+@keyframes rotBGimg {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.tool-card::after {
+    content: '';
+    position: absolute;
+    background: #07182E;
+    inset: 5px;
+    border-radius: 15px;
+    z-index: -1;
+}
+
 .tool-card-neumorphic {
     position: relative;
     width: 100%;
@@ -815,7 +878,7 @@ body {
 
 .tool-icon-display {
     font-size: 3rem;
-    color: var(--primary-color);
+    color: #00b7ff;
     margin-bottom: 1rem;
     position: relative;
     z-index: 3;
@@ -827,7 +890,7 @@ body {
 .tool-title {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: white;
     margin: 1rem 0 0.5rem 0;
     position: relative;
     z-index: 3;
@@ -835,7 +898,7 @@ body {
 }
 
 .tool-description {
-    color: var(--text-light);
+    color: #aaa;
     font-size: 0.95rem;
     text-align: center;
     margin-bottom: 1.5rem;
@@ -856,13 +919,13 @@ body {
     display: flex;
     align-items: center;
     gap: 0.7rem;
-    color: var(--text-light);
+    color: #aaa;
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
 }
 
 .tool-features i {
-    color: var(--primary-color);
+    color: #00b7ff;
     font-size: 0.9rem;
 }
 
@@ -870,7 +933,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, rgb(0, 183, 255), rgb(255, 48, 255));
     color: white;
     border: none;
     padding: 0.7rem 1.5rem;
@@ -886,9 +949,8 @@ body {
 }
 
 .tool-btn-modern:hover {
-    background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(201, 181, 156, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 183, 255, 0.4);
 }
 
 /* Mobile Responsive */
@@ -925,6 +987,13 @@ body {
 
 .footer-section {
     padding: 1rem 0;
+}
+
+.footer-section:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-section .logo {
@@ -1098,6 +1167,101 @@ body {
         font-size: 0.9rem;
     }
 }
+/* ==============================
+   SOCIAL MEDIA CARD STYLES
+============================== */
+
+.card {
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(238, 238, 238);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 25px;
+  gap: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+/* for all social containers*/
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color: rgb(44, 44, 44);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/* instagram*/
+.containerOne:hover {
+  background-color: #d62976;
+  transition-duration: 0.3s;
+  transform: scale(1.5);
+  border-radius: 15px;
+}
+
+/* twitter*/
+.containerTwo:hover {
+  background-color: #00acee;
+  transition-duration: 0.3s;
+  transform: scale(1.5);
+  border-radius: 15px;
+}
+
+/* linkedin*/
+.containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: 0.3s;
+  transform: scale(1.5);
+  border-radius: 15px;
+}
+
+/* Whatsapp*/
+.containerFour:hover {
+  background-color: #25d366;
+  transition-duration: 0.3s;
+  transform: scale(1.5);
+  border-radius: 15px;
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+.socialSvg {
+  width: 17px;
+  height: 17px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /* ==============================
    CERTIFICATE PREVIEW STYLES
 ============================== */

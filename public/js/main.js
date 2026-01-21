@@ -147,21 +147,23 @@ function loadCourses() {
     
     container.innerHTML = coursesData.map(course => `
         <div class="col-md-6 col-lg-4">
-            <div class="course-card-hover">
-                <div class="course-front-content">
+            <div class="course-card">
+                <div class="first-content">
                     <div class="course-icon-display">${course.icon}</div>
                     <h3 class="course-card-title">${course.title}</h3>
                 </div>
-                <div class="course-overlay-content">
-                    <span class="course-badge">${course.level}</span>
-                    <p class="course-back-description">${course.description}</p>
-                    <div class="course-back-meta">
-                        <span><i class="fas fa-clock"></i> ${course.duration}</span>
-                        <span><i class="fas fa-star"></i> ${course.rating}</span>
-                    </div>
-                    <div class="course-back-footer">
-                        <span class="price-tag">${course.price}</span>
-                        <a href="/login" class="btn-enroll">Enroll Now</a>
+                <div class="second-content">
+                    <div class="course-back-info">
+                        <span class="course-badge">${course.level}</span>
+                        <p class="course-back-description">${course.description}</p>
+                        <div class="course-back-meta">
+                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                            <span><i class="fas fa-star"></i> ${course.rating}</span>
+                        </div>
+                        <div class="course-back-footer">
+                            <span class="price-tag">${course.price}</span>
+                            <a href="/login" class="btn-enroll">Enroll Now</a>
+                        </div>
                     </div>
                 </div>
             </div>
