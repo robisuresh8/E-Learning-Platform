@@ -74,7 +74,7 @@ function populateCourseContent() {
     if (!courseData) return;
     
     // Update page title and headers
-    document.title = courseData.title + ' - ICTRD LEARNING';
+    document.title = courseData.title + ' - Corso E-Learning';
     document.getElementById('courseTitle').textContent = courseData.title;
     document.getElementById('courseHeading').textContent = courseData.title;
     document.getElementById('courseDescription').textContent = courseData.description;

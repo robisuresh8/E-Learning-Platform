@@ -198,7 +198,7 @@ function authenticateUser(req, res, next)
 {
   "success": true,
   "paymentId": "CERT-1234567890",
-  "certificateId": "ICTRD-2026-ABC12",
+  "certificateId": "Corso-2026-ABC12",
   "message": "Payment processed successfully. You are now enrolled in this course.",
   "enrolled": true
 }

@@ -55,7 +55,7 @@ function downloadCertificate() {
     const certificateContent = `
 Certificate of Completion
 
-ICTRD Learning Platform
+Corso E-Learning
 
 This certificate is awarded to:
 ${name}

@@ -1,8 +1,8 @@
 <<<<<<< HEAD
-# ICTRD LEARNING - Fast-Track Certification Platform
+# Corso E-Learning - Fast-Track Certification Platform
 
 ## Overview
-ICTRD LEARNING is a modern e-learning platform that specializes in **instant professional certifications completed in under 10 minutes**. The entire platform is designed around the core value proposition of delivering industry-recognized certifications quickly and efficiently.
+Corso E-Learning is a modern e-learning platform that specializes in **instant professional certifications completed in under 10 minutes**. The entire platform is designed around the core value proposition of delivering industry-recognized certifications quickly and efficiently.
 
 ## Key Features
 
@@ -169,7 +169,7 @@ node server.js
 
 The platform is fully functional for demonstration purposes. All UI is certification-focused with clear payment pathways.
 
-A modern, dynamic e-learning platform built with Node.js, HTML, CSS, and JavaScript. ICTRD LEARNING features a dark, vibrant theme with extensive animations and comprehensive course offerings designed to advance your career.
+A modern, dynamic e-learning platform built with Node.js, HTML, CSS, and JavaScript. Corso E-Learning features a dark, vibrant theme with extensive animations and comprehensive course offerings designed to advance your career.
 
 ## Features
 
@@ -326,7 +326,7 @@ Each course includes detailed curriculum, instructor information, and comprehens
 
 ---
 
-Transform your future with ICTRD LEARNING! 🚀✨
+Transform your future with Corso E-Learning! 🚀✨
 =======
 # E-Learning-Platform
 >>>>>>> 6ea8bce4c6f71154500aa55510cb70bbc28905d9

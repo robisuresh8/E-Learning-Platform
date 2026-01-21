@@ -1,5 +1,5 @@
 // ==============================
-// ICTRD LEARNING - MAIN APPLICATION
+// CORSO E-LEARNING - MAIN APPLICATION
 // ==============================
 
 document.addEventListener('DOMContentLoaded', function() {

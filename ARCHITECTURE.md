@@ -327,7 +327,7 @@
          ▼
 ┌──────────────────────────────────┐
 │ Client receives response         │
-│ ├─ certificateId: "ICTRD-..."    │
+│ ├─ certificateId: "Corso-..."    │
 │ ├─ enrolled: true                │
 │ └─ redirectUrl: "/certificate?id=..." 
 └────────┬─────────────────────────┘

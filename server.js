@@ -496,7 +496,7 @@ app.post('/api/process-payment', (req, res) => {
   
   // Simulate payment processing
   const paymentId = `CERT-${Date.now()}`;
-  const certId = `ICTRD-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
+  const certId = `Corso-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
   
   // Enroll user in course if payment is successful and userId provided
   if (userId) {
