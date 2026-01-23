@@ -206,3 +206,102 @@ function initializeCertificateDate() {
         certDateElement.textContent = formattedDate;
     }
 }
+
+// Text rotation animation for hero title
+function initTextRotation() {
+    const textRotate = document.querySelector('.gradient-text-rotate');
+    if (!textRotate) return;
+    
+    const items = textRotate.querySelectorAll('.text-rotate-item');
+    let currentIndex = 0;
+    
+    setInterval(() => {
+        items[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % items.length;
+        items[currentIndex].classList.add('active');
+    }, 3000);
+}
+
+// Animate hero stats
+function animateHeroStats() {
+    const statNumbers = document.querySelectorAll('.hero-stat-item .stat-number');
+    
+    statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        let current = 0;
+        const increment = target / 30;
+        const duration = 1500;
+        const stepTime = duration / 30;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                stat.textContent = target;
+                clearInterval(timer);
+            } else {
+                stat.textContent = Math.floor(current);
+            }
+        }, stepTime);
+    });
+}
+
+// Set certificate date
+function setCertificateDate() {
+    const dateEl = document.getElementById('certDateShowcase');
+    if (dateEl) {
+        const today = new Date();
+        dateEl.textContent = today.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+    }
+}
+
+// Rotate certificate course names
+function rotateCertificateCourses() {
+    const courseEl = document.getElementById('certCourseRotate');
+    if (!courseEl) return;
+    
+    const courses = [
+        'Web Development Mastery',
+        'Data Science Fundamentals',
+        'Digital Marketing Pro',
+        'Cloud Computing Expert',
+        'AI & Machine Learning'
+    ];
+    
+    let currentIndex = 0;
+    setInterval(() => {
+        courseEl.style.opacity = '0';
+        courseEl.style.transform = 'translateY(-10px)';
+        
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % courses.length;
+            courseEl.textContent = courses[currentIndex];
+            courseEl.style.opacity = '1';
+            courseEl.style.transform = 'translateY(0)';
+        }, 100);
+    }, 1750);
+}
+
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+    initTextRotation();
+    animateHeroStats();
+    setCertificateDate();
+    rotateCertificateCourses();
+    
+    // Add scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.hero-content-wrapper, .hero-visual-wrapper').forEach(el => {
+        observer.observe(el);
+    });
+});
