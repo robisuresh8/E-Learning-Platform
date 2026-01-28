@@ -124,55 +124,12 @@
             
             <div class="col-lg-6 hero-visual-wrapper">
                 <div class="hero-visual-container">
-                    <div class="certificate-showcase">
-                        <div class="cert-card-3d">
-                            <div class="cert-shine"></div>
-                            <div class="cert-header-showcase">
-                                <div class="cert-logo-showcase">
-                                    <i class="fas fa-graduation-cap"></i>
-                                    <span>Corso</span>
-                                </div>
-                                <div class="cert-verified-badge">
-                                    <i class="fas fa-check"></i>
-                                    <span>Verified</span>
-                                </div>
-                            </div>
-                            <div class="cert-body-showcase">
-                                <div class="cert-title-showcase">Certificate of Completion</div>
-                                <div class="cert-name-showcase">Your Name Here</div>
-                                <div class="cert-course-showcase" id="certCourseRotate">Web Development Mastery</div>
-                                <div class="cert-date-showcase">
-                                    <span>Issued:</span>
-                                    <span id="certDateShowcase"></span>
-                                </div>
-                            </div>
-                            <div class="cert-footer-showcase">
-                                <div class="cert-id-showcase">ID: Corso-2024-XXXXX</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="floating-cert-icons">
-                        <div class="float-icon-cert icon-1">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <div class="float-icon-cert icon-2">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div class="float-icon-cert icon-3">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="float-icon-cert icon-4">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                    </div>
+                    <img src="mahila.png" alt="Hero Image" class="img-fluid" style="max-height: 100%; width: auto;">
                 </div>
             </div>
         </div>
     </div>
-    <div class="hero-scroll-indicator">
-        <span>Scroll to explore</span>
-        <i class="fas fa-chevron-down"></i>
-    </div>
+    
 </section>
 
 
@@ -200,24 +157,68 @@
                     <h2 class="section-title">Personalize Your Learning Journey</h2>
                     <p class="section-subtitle">Powerful tools to help you succeed and grow</p>
                 </div>
-                <div class="tools-grid-alternate">
+                <div class="tools-carousel-wrapper">
                     <!-- Personalization Tool -->
-                    <div class="tool-card-neumorphic tool-left" data-text="Learning Preferences">
+                    <div class="tool-card-neumorphic carousel-card card-left" data-text="Learning Preferences" onclick="rotateCarousel(this)">
                         <div class="tool-icon-display"><i class="fas fa-sliders-h"></i></div>
                     </div>
 
                     <!-- Certificate Customizer -->
-                    <div class="tool-card-neumorphic tool-right" data-text="Certificate Designer">
+                    <div class="tool-card-neumorphic carousel-card card-center" data-text="Certificate Designer" onclick="rotateCarousel(this)">
                         <div class="tool-icon-display"><i class="fas fa-certificate"></i></div>
                     </div>
 
                     <!-- Resume Builder -->
-                    <div class="tool-card-neumorphic tool-left" data-text="Resume Builder">
+                    <div class="tool-card-neumorphic carousel-card card-right" data-text="Resume Builder" onclick="rotateCarousel(this)">
                         <div class="tool-icon-display"><i class="fas fa-file-alt"></i></div>
                     </div>
                 </div>
-            </div>
         </section>
+
+                <!-- Dashboard Preview Section -->
+                <section class="dashboard-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2 class="section-title">Your Learning Dashboard</h2>
+                            <p class="section-subtitle">
+                                Get a bird’s-eye view of your courses, progress and certifications in one place.
+                            </p>
+                        </div>
+        
+                        <div class="dashboard-section-content">
+                            <!-- Left: short description / bullets -->
+                            <div class="dashboard-section-text">
+                                <h3>Track Everything In One View</h3>
+                                <p>
+                                    See active courses, completion rates, upcoming assessments and earned certificates
+                                    on a single, interactive dashboard designed for busy learners.
+                                </p>
+                                <ul>
+                                    <li>Real-time course progress</li>
+                                    <li>Instant certificate download status</li>
+                                    <li>Personalized learning recommendations</li>
+                                </ul>
+                            </div>
+        
+                            <!-- Right: Figma dashboard (same margins as site via .container) -->
+                            <div class="dashboard-section-visual">
+                                <div class="dashboard-showcase">
+                                    <div class="dashboard-frame">
+                                        <iframe 
+                                            style="border: 1px solid rgba(0, 0, 0, 0.1);" 
+                                            width="100%" 
+                                            height="100%" 
+                                            src="https://embed.figma.com/proto/vWMy6JmvAV8NTm418PP4Aq/Corso-Dashboard?page-id=0%3A1&node-id=2-2&scaling=contain&content-scaling=fixed&starting-point-node-id=2%3A2&embed-host=share" 
+                                            class="figma-embed"
+                                            allowfullscreen
+                                            loading="lazy">
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
         <!-- Final CTA Section -->
         <section class="cta-section">
@@ -292,5 +293,22 @@
     </footer>
 
     <script src="/js/main.js"></script>
+    <script>
+        function rotateCarousel(clickedCard) {
+            if (clickedCard.classList.contains('card-center')) return;
+
+            const container = clickedCard.parentElement;
+            const centerCard = container.querySelector('.card-center');
+            const isLeft = clickedCard.classList.contains('card-left');
+
+            if (isLeft) {
+                clickedCard.className = 'tool-card-neumorphic carousel-card card-center';
+                centerCard.className = 'tool-card-neumorphic carousel-card card-left';
+            } else {
+                clickedCard.className = 'tool-card-neumorphic carousel-card card-center';
+                centerCard.className = 'tool-card-neumorphic carousel-card card-right';
+            }
+        }
+    </script>
 </body>
 </html>
