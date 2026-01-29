@@ -194,6 +194,12 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 1.7;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.7;
 }
 
 /* ==============================
@@ -422,11 +428,6 @@ body {
    FEATURES SECTION
 ============================== */
 
-.features-section {
-    padding: 80px 0;
-    background: white;
-}
-
 .feature-card {
     background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-light) 100%);
     padding: 2.5rem;
@@ -470,11 +471,6 @@ body {
    COURSES SECTION
 ============================== */
 
-.courses-section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-color) 100%);
-}
-
 .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
@@ -485,7 +481,7 @@ body {
 }
 
 .section-subtitle {
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: var(--text-light);
     text-align: center;
     margin-bottom: 3rem;
@@ -610,8 +606,8 @@ body {
 
 .course-back-description {
     color: #aaa;
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.6;
     margin: 0;
     text-align: center;
 }
@@ -682,16 +678,12 @@ body {
 
 
 /* Dashboard Section (below Tools & Resources) */
-.dashboard-section {
-    padding: 80px 0;
-    background: var(--secondary-color); /* same base as page */
-}
-/* Make dashboard frame span full container width in the dashboard section */
 /* Make dashboard frame match the image size */
 .dashboard-section .dashboard-frame {
     width: 100%;
-    max-width: 100%;
-    aspect-ratio: 16 / 10;     /* adjust to match your dashboard proportions */
+    max-width: 1100px;
+    aspect-ratio: auto;     /* adjust to match your dashboard proportions */
+    background: #fff;
     height: auto;
 }
 .dashboard-section .dashboard-frame {
@@ -828,11 +820,6 @@ body {
    TESTIMONIALS SECTION
 ============================== */
 
-.testimonials-section {
-    padding: 80px 0;
-    background: white;
-}
-
 .testimonial-card {
     background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-light) 100%);
     padding: 2rem;
@@ -857,7 +844,6 @@ body {
     color: var(--text-dark);
     font-style: italic;
     margin-bottom: 1.5rem;
-    line-height: 1.8;
 }
 
 .testimonial-author {
@@ -1150,12 +1136,6 @@ body {
     .hero .col-lg-6 {
         flex: 0 0 100%;
         max-width: 100%;
-    }
-
-    .features-section,
-    .courses-section,
-    .testimonials-section {
-        padding: 40px 0;
     }
 
     .nav {
@@ -1642,34 +1622,41 @@ body {
     animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
-.gradient-text-rotate {
+.gradient-text-rotate{
+    color: #FF6B35;
     position: relative;
     display: inline-block;
-    background: linear-gradient(135deg, #FF6B35 0%, #FFD23F 50%, #FF6B9D 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     min-width: 200px;
-}
-
-.text-rotate-item {
+    height: 1.2em;          /* important: reserves space */
+    vertical-align: bottom;
+    overflow: hidden;
+  }
+  
+  .text-rotate-item{
     position: absolute;
+    left: 0;
+    top: 0;
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.text-rotate-item.active {
-    position: relative;
+    transform: translateY(18px);
+    transition: opacity 300ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
+    will-change: opacity, transform;
+  }
+  
+  .text-rotate-item.active{
     opacity: 1;
     transform: translateY(0);
-}
+  }
+  
+  .text-rotate-item.leaving{
+    opacity: 0;
+    transform: translateY(-18px);
+  }
 
 .hero-subtitle {
     font-size: 1.25rem;
     color: #4A4A4A;
     margin-bottom: 32px;
-    line-height: 1.8;
+    line-height: 1.7;
     max-width: 600px;
     animation: fadeInUp 0.8s ease-out 0.4s both;
 }
@@ -2101,62 +2088,7 @@ body {
         transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
     }
 }
-.gradient-text-rotate {
-    position: relative;
-    display: inline-block;
-    min-width: 200px;
-    height: 1.2em;
-    vertical-align: bottom;
-    overflow: hidden;
-}
 
-.text-rotate-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #FF6B35 0%, #FFD23F 50%, #FF6B9D 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: textRotate 12s infinite;
-}
-
-.text-rotate-item:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.text-rotate-item:nth-child(2) {
-    animation-delay: 3s;
-}
-
-.text-rotate-item:nth-child(3) {
-    animation-delay: 6s;
-}
-
-.text-rotate-item:nth-child(4) {
-    animation-delay: 9s;
-}
-
-@keyframes textRotate {
-    0%, 20% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.8);
-    }
-    5%, 15% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    20%, 100% {
-        opacity: 0;
-        transform: translateY(-30px) scale(0.8);
-    }
-}
 /* Dashboard Showcase */
 .dashboard-showcase {
     position: relative;
@@ -2201,13 +2133,32 @@ body {
 /* Figma Embed Styling */
 .figma-embed {
     width: 115%;              /* render bigger than the frame */
-    height: 120%;
     border: none;
     display: block;
     transform: scale(0.995);    /* zoom OUT so more fits */
     transform-origin: top left;
 }
-
+/* Stop floating/3D effects ONLY in the dashboard section */
+.dashboard-section .dashboard-frame {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .dashboard-section .dashboard-frame:hover {
+    transform: none !important;
+  }
+  .dashboard-section .dashboard-showcase {
+    animation: none !important;
+    transform: none !important;
+  }
+.dashboard-cover {
+    width: 100%;
+    height: 100%;
+    height: auto;
+    
+    display: block;
+    object-fit: contain; /* use 'cover' if you prefer it to fill/crop */
+  }
 /* Dashboard Image Styling */
 .dashboard-image {
     width: 100%;
@@ -2338,6 +2289,8 @@ body {
         width: 100%;
         max-width: 900px;      /* controls how wide the mini-viewer can get */
         aspect-ratio: 16 / 9;  /* keep a dashboard-like shape */
+        max-width: 900px;
+        height: auto; /* Let content (image) define height */
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
@@ -2412,4 +2365,90 @@ body {
 @media (max-width: 768px) {
     .card-left { left: 10%; }
     .card-right { left: 90%; }
+    .card-left { left: 15%; }
+    .card-right { left: 85%; }
+    /* Show all cards scaled down for mobile */
+    .card-left { 
+        left: 15%; 
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    .card-right { 
+        left: 85%; 
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    .tools-carousel-wrapper {
+        height: 300px;
+    }
+
+    .card-center {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    .features-section,
+    .courses-section,
+    .tools-resources-section,
+    .dashboard-section,
+    .testimonials-section {
+        padding: 60px 0;
+    }
+}
+/* Translucent off-white navbar */
+.navbar.sticky-top {
+    background: rgb(255, 250, 245) !important; /* Solid off-white */
+    border-bottom: 1px solid rgba(255, 107, 53, 0.18);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.08);
+  }
+  /* Visual section separator without adding spacing */
+section {
+    position: relative;
+  }
+  
+  section::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 107, 53, 0.7),
+      rgba(255, 210, 63, 0.7),
+      rgba(255, 107, 157, 0.7),
+      transparent
+    );
+    opacity: 0.7;
+  }
+
+/* ==============================
+   MOBILE COURSES CAROUSEL
+============================== */
+@media (max-width: 768px) {
+    #coursesList {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 20px 0 40px 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    #coursesList::-webkit-scrollbar {
+        display: none;
+    }
+
+    #coursesList > div {
+        flex: 0 0 85%;
+        max-width: 85%;
+        scroll-snap-align: center;
+        margin-top: 0;
+    }
+
+    /* Adjust hover effect for mobile carousel */
+    #coursesList .course-card:hover {
+        transform: scale(1.05);
+    }
 }
