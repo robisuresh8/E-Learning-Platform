@@ -88,7 +88,8 @@ const coursesData = [
         duration: '10 min',
         rating: '4.8',
         price: '₹1,499',
-        icon: '💻'
+        icon: '💻',
+        image: '/images/Webdev.png'
     },
     {
         title: 'Advanced React.js',
@@ -97,7 +98,8 @@ const coursesData = [
         duration: '10 min',
         rating: '4.9',
         price: '₹2,499',
-        icon: '⚛️'
+        icon: '⚛️',
+        image: '/images/React.png'
     },
     {
         title: 'Data Science Essentials',
@@ -106,7 +108,8 @@ const coursesData = [
         duration: '10 min',
         rating: '4.7',
         price: '₹1,999',
-        icon: '📊'
+        icon: '📊',
+        image: '/images/Data.png'
     },
     {
         title: 'Cloud Computing with AWS',
@@ -115,7 +118,8 @@ const coursesData = [
         duration: '10 min',
         rating: '4.8',
         price: '₹2,249',
-        icon: '☁️'
+        icon: '☁️',
+        image: '/images/Cloud.png'
     },
     {
         title: 'Digital Marketing Pro',
@@ -124,7 +128,8 @@ const coursesData = [
         duration: '10 min',
         rating: '4.6',
         price: '₹1,749',
-        icon: '📱'
+        icon: '📱',
+        image: '/images/digital.png'
     },
     {
         title: 'Project Management Mastery',
@@ -133,7 +138,8 @@ const coursesData = [
         duration: '10 min',
         rating: '4.9',
         price: '₹2,749',
-        icon: '📈'
+        icon: '📈',
+        image: '/images/project.png'
     }
 ];
 
@@ -149,8 +155,7 @@ function loadCourses() {
         <div class="col-md-6 col-lg-4">
             <div class="course-card">
                 <div class="first-content">
-                    <div class="course-icon-display">${course.icon}</div>
-                    <h3 class="course-card-title">${course.title}</h3>
+                    <img src="${course.image}" alt="${course.title}" class="course-card-image" loading="lazy" />
                 </div>
                 <div class="second-content">
                     <div class="course-back-info">
