@@ -89,37 +89,17 @@ const coursesData = [
         rating: '4.8',
         price: '₹1,499',
         icon: '💻',
-        image: '/images/Webdev.png'
+        image: '/images/Webdev.jpg'
     },
     {
-        title: 'Advanced React.js',
-        level: 'Advanced',
-        description: 'Deep dive into React hooks, context, and state management.',
-        duration: '10 min',
-        rating: '4.9',
-        price: '₹2,499',
-        icon: '⚛️',
-        image: '/images/React.png'
-    },
-    {
-        title: 'Data Science Essentials',
+        title: 'Data Science & Analytics',
         level: 'Intermediate',
         description: 'Learn Python, pandas, and data visualization techniques.',
         duration: '10 min',
         rating: '4.7',
         price: '₹1,999',
         icon: '📊',
-        image: '/images/Data.png'
-    },
-    {
-        title: 'Cloud Computing with AWS',
-        level: 'Intermediate',
-        description: 'Deploy and manage applications on Amazon Web Services.',
-        duration: '10 min',
-        rating: '4.8',
-        price: '₹2,249',
-        icon: '☁️',
-        image: '/images/Cloud.png'
+        image: '/images/Data.jpg'
     },
     {
         title: 'Digital Marketing Pro',
@@ -129,7 +109,17 @@ const coursesData = [
         rating: '4.6',
         price: '₹1,749',
         icon: '📱',
-        image: '/images/digital.png'
+        image: '/images/Digital.jpg'
+    },
+    {
+        title: 'Cloud Computing with AWS',
+        level: 'Intermediate',
+        description: 'Deploy and manage applications on Amazon Web Services.',
+        duration: '10 min',
+        rating: '4.8',
+        price: '₹2,249',
+        icon: '☁️',
+        image: '/images/Cloud.jpg'
     },
     {
         title: 'Project Management Mastery',
@@ -140,6 +130,16 @@ const coursesData = [
         price: '₹2,749',
         icon: '📈',
         image: '/images/project.png'
+    },
+    {
+        title: 'Advanced React.js',
+        level: 'Advanced',
+        description: 'Deep dive into React hooks, context, and state management.',
+        duration: '10 min',
+        rating: '4.9',
+        price: '₹2,499',
+        icon: '⚛️',
+        image: '/images/React.jpg'
     }
 ];
 
@@ -153,24 +153,27 @@ function loadCourses() {
     
     container.innerHTML = coursesData.map(course => `
         <div class="col-md-6 col-lg-4">
-            <div class="course-card">
-                <div class="first-content">
-                    <img src="${course.image}" alt="${course.title}" class="course-card-image" loading="lazy" />
-                </div>
-                <div class="second-content">
-                    <div class="course-back-info">
-                        <span class="course-badge">${course.level}</span>
-                        <p class="course-back-description">${course.description}</p>
-                        <div class="course-back-meta">
-                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
-                            <span><i class="fas fa-star"></i> ${course.rating}</span>
-                        </div>
-                        <div class="course-back-footer">
-                            <span class="price-tag">${course.price}</span>
-                            <a href="/login" class="btn-enroll">Enroll Now</a>
+            <div class="course-card-wrapper">
+                <div class="course-card">
+                    <div class="first-content">
+                        <img src="${course.image}" alt="${course.title}" class="course-card-image" loading="lazy" />
+                    </div>
+                    <div class="second-content">
+                        <div class="course-back-info">
+                            <span class="course-badge">${course.level}</span>
+                            <p class="course-back-description">${course.description}</p>
+                            <div class="course-back-meta">
+                                <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                                <span><i class="fas fa-star"></i> ${course.rating}</span>
+                            </div>
+                            <div class="course-back-footer">
+                                <span class="price-tag">${course.price}</span>
+                                <a href="/login" class="btn-enroll">Enroll Now</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="course-card-label">${course.title}</div>
             </div>
         </div>
     `).join('');
