@@ -233,6 +233,8 @@ function initTextRotation() {
     });
   
     setInterval(() => {
+      if (document.hidden) return;
+
       const current = items[currentIndex];
       const nextIndex = (currentIndex + 1) % items.length;
       const next = items[nextIndex];
