@@ -216,46 +216,54 @@ function initializeCertificateDate() {
 }
 
 // Text rotation animation for hero title
+// Text rotation animation for hero title (syncs all instances including hand text)
 function initTextRotation() {
-    const textRotate = document.querySelector('.gradient-text-rotate');
-    if (!textRotate) return;
-  
-    const items = Array.from(textRotate.querySelectorAll('.text-rotate-item'));
+    const allContainers = document.querySelectorAll('.gradient-text-rotate');
+    if (!allContainers.length) return;
+
+    const first = allContainers[0];
+    const items = Array.from(first.querySelectorAll('.text-rotate-item'));
     if (items.length < 2) return;
-  
+
     let currentIndex = items.findIndex(i => i.classList.contains('active'));
     if (currentIndex < 0) currentIndex = 0;
-  
-    const DURATION = 300;   // must match CSS transition (ms)
-    const INTERVAL = 1500;  // rotation speed
-  
-    // Ensure only one active on load
-    items.forEach((el, idx) => {
-      el.classList.toggle('active', idx === currentIndex);
-      el.classList.remove('leaving');
-    });
-  
-    setInterval(() => {
-      if (document.hidden) return;
 
-      const current = items[currentIndex];
-      const nextIndex = (currentIndex + 1) % items.length;
-      const next = items[nextIndex];
-  
-      current.classList.remove('active');
-      current.classList.add('leaving');
-  
-      next.classList.remove('leaving');
-  
-      // next frame → smooth transition in
-      requestAnimationFrame(() => next.classList.add('active'));
-  
-      // cleanup leaving class after animation
-      setTimeout(() => current.classList.remove('leaving'), DURATION);
-  
-      currentIndex = nextIndex;
+    const DURATION = 300;
+    const INTERVAL = 1500;
+
+    // Set initial state in ALL containers
+    allContainers.forEach(container => {
+        const containerItems = container.querySelectorAll('.text-rotate-item');
+        containerItems.forEach((el, idx) => {
+            el.classList.toggle('active', idx === currentIndex);
+            el.classList.remove('leaving');
+        });
+    });
+
+    setInterval(() => {
+        if (document.hidden) return;
+
+        const nextIndex = (currentIndex + 1) % items.length;
+
+        allContainers.forEach(container => {
+            const containerItems = container.querySelectorAll('.text-rotate-item');
+            const current = containerItems[currentIndex];
+            const next = containerItems[nextIndex];
+
+            if (current) {
+                current.classList.remove('active');
+                current.classList.add('leaving');
+            }
+            if (next) {
+                next.classList.remove('leaving');
+                requestAnimationFrame(() => next.classList.add('active'));
+            }
+            setTimeout(() => current && current.classList.remove('leaving'), DURATION);
+        });
+
+        currentIndex = nextIndex;
     }, INTERVAL);
-  }
+}
 
 // Animate hero stats
 function animateHeroStats() {

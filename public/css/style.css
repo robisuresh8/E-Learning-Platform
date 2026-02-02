@@ -1608,7 +1608,7 @@ p {
 }
 
 .hero-badge {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 10px;
     padding: 12px 24px;
@@ -1619,6 +1619,8 @@ p {
     margin-bottom: 24px;
     box-shadow: 0 8px 25px rgba(255, 210, 63, 0.3);
     animation: pulseBadge 2s ease-in-out infinite;
+    width: fit-content;
+    margin-left: auto;
 }
 
 @keyframes pulseBadge {
@@ -1635,6 +1637,7 @@ p {
 .badge-icon {
     font-size: 20px;
     animation: rotateIcon 3s linear infinite;
+    text-align: right; 
 }
 
 
@@ -1646,17 +1649,20 @@ p {
     margin-bottom: 24px;
     line-height: 1.1;
     letter-spacing: -2px;
+    text-align: right; 
 }
 
 .title-line-1 {
     display: block;
     animation: fadeInUp 0.8s ease-out;
+    text-align: right; 
 }
 
 .title-line-2 {
     display: block;
     margin-top: 8px;
     animation: fadeInUp 0.8s ease-out 0.2s both;
+    text-align: right; 
 }
 
 .gradient-text-rotate{
@@ -1696,6 +1702,7 @@ p {
     line-height: 1.7;
     max-width: 600px;
     animation: fadeInUp 0.8s ease-out 0.4s both;
+    text-align: right; 
 }
 
 .hero-subtitle strong {
@@ -2645,9 +2652,79 @@ section {
 
 
 .hero-mahila-image {
-    max-width: 700%;
+    max-width: 150%;
     max-height: 720px;  /* or 420px – match your preference */
     width: auto;
     height: auto;
 }
 
+.hero-mahila-frame {
+    position: relative;
+}
+
+.hero-hand-text {
+    position: absolute;
+    left: 2%;
+    top: 24%;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hero-hand-rotate {
+    display: inline-block;
+    position: relative;
+    min-width: 90px;
+    height: 1.6em;
+    overflow: hidden;
+    font-size: 3rem;
+    font-weight: 700;
+    white-space: nowrap;
+    background: linear-gradient(135deg, #FF6B35 0%, #FFD23F 50%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+}
+
+.hero-hand-rotate .text-rotate-item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.hero-hand-rotate .text-rotate-item.active {
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-hand-rotate .text-rotate-item.leaving {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+.gradient-text-rotate .text-rotate-item {
+    color: #FF6B35;
+    -webkit-text-fill-color: #FF6B35;
+}
+.hero-hand-text {
+    z-index: 10;
+}
+
+.hero-hand-rotate .text-rotate-item {
+    color: #FF6B35;
+    -webkit-text-fill-color: #FF6B35;
+    background: none;
+}
+.gradient-text-rotate .text-rotate-item.active,
+.gradient-text-rotate .text-rotate-item.leaving,
+.hero-hand-rotate .text-rotate-item.active,
+.hero-hand-rotate .text-rotate-item.leaving {
+    background: linear-gradient(135deg, #FF6B35 0%, #FFD23F 50%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
