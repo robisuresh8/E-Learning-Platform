@@ -293,6 +293,162 @@ function setCertificateDate() {
     }
 }
 
+// Decorative random shapes behind hero image
+function initHeroImageShapes() {
+    const host = document.querySelector('.hero-image-shapes');
+    if (!host) return;
+    if (host.dataset.ready === 'true') return;
+    // If we have static shapes in HTML, don't generate random ones
+    if (host.dataset.static === 'true') {
+        host.dataset.ready = 'true';
+        return;
+    }
+
+    const palette = ['#FF6B35', '#FFD23F', '#FF6B9D', '#FFE66D'];
+    const types = ['circle', 'squircle', 'triangle', 'ring'];
+
+    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    const count = isMobile ? 14 : 20;
+
+    const rand = (min, max) => Math.random() * (max - min) + min;
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+    const container = host.closest('.hero-visual-container') || host.parentElement;
+    const frame = document.querySelector('.hero-mahila-frame');
+    const img = document.querySelector('.hero-mahila-image');
+    if (!container || !frame || !img) return;
+
+    // If image isn't loaded yet, wait then retry (so bounds are correct)
+    if (!img.complete) {
+        img.addEventListener('load', () => {
+            host.dataset.ready = 'false';
+            initHeroImageShapes();
+        }, { once: true });
+        return;
+    }
+
+    const containerRect = container.getBoundingClientRect();
+    const imageRect = frame.getBoundingClientRect();
+    const w = containerRect.width;
+    const h = containerRect.height;
+    if (!w || !h) return;
+
+    // Exclusion zone = image bounds + padding so shapes never sit on it
+    const pad = isMobile ? 20 : 32;
+    const exLeft = (imageRect.left - containerRect.left) - pad;
+    const exTop = (imageRect.top - containerRect.top) - pad;
+    const exRight = (imageRect.right - containerRect.left) + pad;
+    const exBottom = (imageRect.bottom - containerRect.top) + pad;
+
+    // Start clean (in case of hot reload / partial renders)
+    host.innerHTML = '';
+
+    const isInExclusion = (xPx, yPx, radiusPx) => {
+        const l = exLeft - radiusPx;
+        const t = exTop - radiusPx;
+        const r = exRight + radiusPx;
+        const b = exBottom + radiusPx;
+        return xPx >= l && xPx <= r && yPx >= t && yPx <= b;
+    };
+
+    // Even distribution: grid across container, skipping cells intersecting exclusion
+    const aspect = w / h;
+    const cols = Math.max(4, Math.ceil(Math.sqrt(count * aspect)));
+    const rows = Math.max(4, Math.ceil(count / cols));
+    const cellW = w / cols;
+    const cellH = h / rows;
+    const candidates = [];
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            const cx = (c + 0.5) * cellW;
+            const cy = (r + 0.5) * cellH;
+            candidates.push({ cx, cy });
+        }
+    }
+
+    // Shuffle candidates
+    for (let i = candidates.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    }
+
+    const placements = [];
+    const jitterX = cellW * 0.22;
+    const jitterY = cellH * 0.22;
+
+    for (let i = 0; i < count; i++) {
+        const type = pick(types);
+        const color = pick(palette);
+
+        const size = rand(isMobile ? 20 : 26, isMobile ? 56 : 84);
+        const radius = size / 2;
+
+        // Find next candidate outside exclusion, with jitter
+        let placed = false;
+        while (candidates.length && !placed) {
+            const spot = candidates.pop();
+            let xPx = spot.cx + rand(-jitterX, jitterX);
+            let yPx = spot.cy + rand(-jitterY, jitterY);
+
+            // Clamp into container
+            xPx = Math.max(radius, Math.min(w - radius, xPx));
+            yPx = Math.max(radius, Math.min(h - radius, yPx));
+
+            if (isInExclusion(xPx, yPx, radius)) continue;
+            placements.push({ xPx, yPx, size, type, color });
+            placed = true;
+        }
+
+        if (!placed) break;
+    }
+
+    // Fallback: if exclusion removed too many grid cells, try random rejection sampling
+    let attempts = 0;
+    while (placements.length < count && attempts < 400) {
+        attempts++;
+        const type = pick(types);
+        const color = pick(palette);
+        const size = rand(isMobile ? 20 : 26, isMobile ? 56 : 84);
+        const radius = size / 2;
+        const xPx = rand(radius, w - radius);
+        const yPx = rand(radius, h - radius);
+        if (isInExclusion(xPx, yPx, radius)) continue;
+        placements.push({ xPx, yPx, size, type, color });
+    }
+
+    for (let i = 0; i < placements.length; i++) {
+        const { xPx, yPx, size, type, color } = placements[i];
+
+        const el = document.createElement('span');
+
+        const x = (xPx / w) * 100;
+        const y = (yPx / h) * 100;
+
+        const rotate = `${Math.round(rand(-35, 35))}deg`;
+        const duration = `${rand(7, 14).toFixed(2)}s`;
+        const delay = `${(-rand(0, 8)).toFixed(2)}s`;
+
+        // Higher opacity - more visible
+        const baseOpacity = type === 'ring' ? 0.28 : 0.38;
+        const opacity = Math.max(0.25, Math.min(0.50, baseOpacity + rand(-0.08, 0.08)));
+
+        el.className = `hero-shape hero-shape--${type}`;
+        el.style.setProperty('--x', `${x}%`);
+        el.style.setProperty('--y', `${y}%`);
+        el.style.setProperty('--s', `${size}px`);
+        el.style.setProperty('--r', rotate);
+        el.style.setProperty('--d', duration);
+        el.style.setProperty('--delay', delay);
+        el.style.setProperty('--c', color);
+        el.style.setProperty('--o', String(opacity));
+
+        host.appendChild(el);
+    }
+
+    host.dataset.ready = 'true';
+}
+
 // Rotate certificate course names
 function rotateCertificateCourses() {
     const courseEl = document.getElementById('certCourseRotate');
